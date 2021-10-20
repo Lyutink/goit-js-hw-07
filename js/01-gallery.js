@@ -29,13 +29,14 @@ function makeImgCards(galleryItems) {
 
 function onImgClickOpenModal(event) {
   event.preventDefault();
-
+  galleryRef.removeEventListener('keydown', onClickEscape);
   galleryRef.addEventListener('keydown', onClickEscape);
   function onClickEscape(event) {
       if (event.key !== "Escape") {
         return;
       }
-      instance.close();
+    instance.close();
+    console.log("iiii")
       galleryRef.removeEventListener('keydown', onClickEscape);
 }
 
@@ -43,13 +44,23 @@ function onImgClickOpenModal(event) {
   const instance = basicLightbox.create(`
       <div class="modal">
           <img src="${selectedImg}">
-          <a>Close</a>
       </div>
   `, {
       onShow: (instance) => {
-      instance.element().querySelector('img').onclick = instance.close
-    }
+      instance.element().querySelector('img').onclick = instance.close;
+      console.log("aaaaa")
+    },
+  },
+  {
+      onClose: (instance) => {
+      instance.close  = (instance) => {
+        console.log("zzzzz")
+      }
+    },
   })
   
   instance.show();
-}
+  // instance.element().querySelector('img').onclick = function () {
+  //   galleryRef.removeEventListener('keydown', onClickEscape);
+  //   console.log("ffff")
+  }
