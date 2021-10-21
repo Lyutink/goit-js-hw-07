@@ -20,4 +20,7 @@ function makeImgCards(galleryItems) {
 
 function onImgClickOpenModal(event) {
     event.preventDefault();
+
+    let lightbox = new SimpleLightbox('.gallery a');
+    console.log(lightbox);
 }
