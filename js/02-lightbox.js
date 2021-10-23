@@ -24,3 +24,7 @@ function onImgClickOpenModal(event) {
     let lightbox = new SimpleLightbox('.gallery a');
     console.log(lightbox);
 }
+
+
+///////
+
